@@ -17,7 +17,11 @@ aster.src('src/**/*.js')
 .map(plugin1(optionsForPlugin1))
 .map(plugin2(optionsForPlugin2))
 // ...
-.subscribe(aster.runner);
+.subscribe(aster.runner({
+    onFile: (file) => {
+        console.log('>> %s'.yellow, file.path)
+    }
+}));
 ```
 
 ## API
