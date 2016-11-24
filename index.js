@@ -20,7 +20,7 @@ function defaultSubscriber(options) {
     console.log('Processing files...');
 
     files.subscribe(Rx.Observer.create(
-      options.onFile || onFile,
+      options.onSuccess || onFile,
       options.onError || onError,
       options.onCompleted || onCompleted
     ));
