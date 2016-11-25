@@ -18,7 +18,7 @@ aster.src('src/**/*.js')
 .map(plugin2(optionsForPlugin2))
 // ...
 .subscribe(aster.runner({
-    onSuccess: (item) => {
+    onNext: (item) => {
         console.log('>> %s'.yellow, item)
     }
 }));

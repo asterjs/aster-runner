@@ -3,16 +3,17 @@
 var Rx = require('rx');
 require('colors');
 
-function onFile(file) {
-  console.log('>> %s'.yellow, file.path)
-}
 
-function onError(error) {
-  console.error(error.stack.red)
-}
-
-function onCompleted() {
-  console.log('Done.'.green)
+var defaults = {
+  onNext: function(file) {
+    console.log('>> %s'.yellow, file.path)
+  },
+  onError: function (error) {
+    console.error(error.stack.red)
+  },
+  onCompleted: function () {
+    console.log('Done.'.green)
+  }
 }
 
 function defaultSubscriber(options) {
@@ -20,9 +21,9 @@ function defaultSubscriber(options) {
     console.log('Processing files...');
 
     files.subscribe(Rx.Observer.create(
-      options.onSuccess || onFile,
-      options.onError || onError,
-      options.onCompleted || onCompleted
+      options.onNext || defaults.onNext,
+      options.onError || defaults.onError,
+      options.onCompleted || defaults.onCompleted
     ));
   }
 }
